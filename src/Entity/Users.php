@@ -42,46 +42,76 @@ class Users
      */
     private $password;
 
-    public function getId(): ?int
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getLogin(): ?string
+    /**
+     * @param int $id
+     * @return Users
+     */
+    public function setId(int $id): Users
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogin(): string
     {
         return $this->login;
     }
 
-    public function setLogin(string $login): self
+    /**
+     * @param string $login
+     * @return Users
+     */
+    public function setLogin(string $login): Users
     {
         $this->login = $login;
-
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @return string
+     */
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    /**
+     * @param string $email
+     * @return Users
+     */
+    public function setEmail(string $email): Users
     {
         $this->email = $email;
-
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @return string
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    /**
+     * @param string $password
+     * @return Users
+     */
+    public function setPassword(string $password): Users
     {
         $this->password = $password;
-
         return $this;
     }
-
 
 }
