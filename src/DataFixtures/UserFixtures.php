@@ -31,15 +31,6 @@ class UserFixtures extends Fixture
 
         $faker = Factory::create('fr_FR');
 
-        $user = new Users();
-        $user
-            ->setLogin('root')
-            ->setPassword($this->encoder->encodePassword($user, 'root'))
-            ->setEmail('root@root.com');
-
-        $manager->persist($user);
-        $manager->flush();
-
         for ($i = 0; $i < 100; $i++) {
             $user = new Users();
             $user
@@ -53,5 +44,18 @@ class UserFixtures extends Fixture
             $user->setId($faker->numberBetween(0, $i));
             $this->setReference(self::USER_REFERENCE, $user);
         }
+
+        /**
+         *  Set up admin account
+         */
+        $user = new Users();
+        $user
+            ->setLogin('root')
+            ->setPassword($this->encoder->encodePassword($user, 'root'))
+            ->setEmail('root@root.com');
+
+        $manager->persist($user);
+        $manager->flush();
+
     }
 }

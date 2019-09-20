@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Contacts;
-use App\Entity\Users;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -11,6 +10,9 @@ use Faker\Factory;
 
 class ContactsFixtures extends Fixture implements DependentFixtureInterface
 {
+
+    const CONTACT_REFERENCE = 'contact-id';
+
     /**
      * @param ObjectManager $manager
      */
@@ -25,8 +27,8 @@ class ContactsFixtures extends Fixture implements DependentFixtureInterface
                 ->setNom($faker->name())
                 ->setPrenom($faker->lastName)
                 ->setEmail($faker->email)
-                ->setUserid($this->getReference(UserFixtures::USER_REFERENCE))
-            ;
+                ->setUserid($this->getReference(UserFixtures::USER_REFERENCE));
+            $this->setReference(self::CONTACT_REFERENCE, $contact);
 
             $manager->persist($contact);
             $manager->flush();

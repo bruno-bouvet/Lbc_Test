@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Contacts;
 
 /**
  * Addresses
  *
  * @ORM\Table(name="addresses", indexes={@ORM\Index(name="idContact", columns={"idContact"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\AddressesRepository")
  */
 class Addresses
 {
@@ -57,7 +58,7 @@ class Addresses
     private $country;
 
     /**
-     * @var \Contacts
+     * @var Contacts
      *
      * @ORM\ManyToOne(targetEntity="Contacts")
      * @ORM\JoinColumns({
@@ -175,18 +176,18 @@ class Addresses
     }
 
     /**
-     * @return \Contacts
+     * @return Contacts
      */
-    public function getIdcontact(): \Contacts
+    public function getIdcontact(): Contacts
     {
         return $this->idcontact;
     }
 
     /**
-     * @param \Contacts $idcontact
+     * @param Contacts $idcontact
      * @return Addresses
      */
-    public function setIdcontact(\Contacts $idcontact): Addresses
+    public function setIdcontact(Contacts $idcontact): Addresses
     {
         $this->idcontact = $idcontact;
         return $this;

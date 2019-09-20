@@ -22,7 +22,7 @@ class UsersRepository extends ServiceEntityRepository implements UserLoaderInter
             ->where('u.login = :query OR u.email = :query')
             ->setParameter('query', $usernameOrEmail)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 
 

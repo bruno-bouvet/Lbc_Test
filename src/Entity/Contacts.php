@@ -5,12 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Users;
 
-
 /**
  * Contacts
  *
  * @ORM\Table(name="contacts", indexes={@ORM\Index(name="userId", columns={"userId"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ContactsRepository")
  */
 class Contacts
 {

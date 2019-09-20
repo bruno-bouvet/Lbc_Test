@@ -7,6 +7,7 @@ use App\Repository\ContactsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class HomeController extends AbstractController
 {
@@ -19,7 +20,17 @@ class HomeController extends AbstractController
     public function index(ContactsRepository $repository) : Response
     {
 
-        $properties = $this->getDoctrine()->getRepository(Contacts::class)->findAll();
+        $userId = $this->getUser();
+
+        if ($userId === null) {
+            $this->redirectToRoute('home');
+        } elseif (!is_object($userId) || !$userId instanceof UserInterface) {
+            $userId->getId();
+        }
+
+        $userId = 793;
+        $properties = $this->getDoctrine()->getManager()->getRepository(Contacts::class)->findBy(['userid' => $userId]);
+        dump($properties);
 
         return $this->render('pages/home.html.twig', [
             'contacts' => $properties
@@ -27,3 +38,4 @@ class HomeController extends AbstractController
     }
 
 }
+

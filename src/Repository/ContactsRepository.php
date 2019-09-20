@@ -3,9 +3,11 @@
 
 namespace App\Repository;
 
+use App\Controller\HomeController;
 use App\Entity\Contacts;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\AbstractModel;
+use PDOStatement;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ContactsRepository extends ServiceEntityRepository
@@ -16,29 +18,19 @@ class ContactsRepository extends ServiceEntityRepository
         parent::__construct($registry, Contacts::class);
     }
 
-    /** @var string  */
-    protected $table = "contacts";
-
-//    /**
-//     * ContactModel constructor.
-//     * @param Database $database
-//     */
-//    public function __construct(Database $database)
-//    {
-//        parent::__construct($database);
-//
-//        $this->model = new AbstractModel();
-//    }
-
     /**
      * Méthode de récupération des contacts d'un utilisateur
      * @param $idUser
      *
-     * @return array|bool|mixed|\PDOStatement
+     * @return array|bool|mixed|PDOStatement
      */
-    public function getContactByUser($idUser)
+    public function findContactByUser($idUser)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE userId = $idUser");
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.userId = idUser')
+            ->setParameter('idUser', $idUser)
+            ->getQuery()->getResult();
     }
+
 
 }
