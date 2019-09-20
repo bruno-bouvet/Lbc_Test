@@ -6,6 +6,7 @@ security:
                 class: App\Entity\Users
                 property: login
     firewalls:
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -18,6 +19,8 @@ security:
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
+            form_login:
+                check_path: login
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 

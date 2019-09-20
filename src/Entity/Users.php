@@ -67,6 +67,16 @@ class Users implements UserInterface, \Serializable
     }
 
     /**
+     * Returns the username used to authenticate the user.
+     * @see UserInterface
+     * @return string The username
+     */
+    public function getUsername() :string
+    {
+        return $this->login;
+    }
+
+    /**
      * @return string
      */
     public function getLogin(): string
@@ -197,15 +207,5 @@ class Users implements UserInterface, \Serializable
             $this->email
             ) = unserialize($serialized, ['allowed_classes' => false]);
 
-    }
-
-    /**
-     * Returns the username used to authenticate the user.
-     *
-     * @return string The username
-     */
-    public function getUsername()
-    {
-        return null;
     }
 }
