@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Users;
+
 
 /**
  * Contacts
@@ -43,7 +45,7 @@ class Contacts
     private $email;
 
     /**
-     * @var \Users
+     * @var Users
      *
      * @ORM\ManyToOne(targetEntity="Users")
      * @ORM\JoinColumns({
@@ -52,16 +54,26 @@ class Contacts
      */
     private $userid;
 
-    public function getId(): ?int
+    /**
+     * @return int|null
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    /**
+     * @return string
+     */
+    public function getNom(): string
     {
         return $this->nom;
     }
 
+    /**
+     * @param string $nom
+     * @return Contacts
+     */
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
@@ -69,11 +81,18 @@ class Contacts
         return $this;
     }
 
-    public function getPrenom(): ?string
+    /**
+     * @return string|null
+     */
+    public function getPrenom(): string
     {
         return $this->prenom;
     }
 
+    /**
+     * @param string $prenom
+     * @return Contacts
+     */
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
@@ -81,11 +100,18 @@ class Contacts
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @return string|null
+     */
+    public function getEmail(): string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return Contacts
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -93,12 +119,19 @@ class Contacts
         return $this;
     }
 
-    public function getUserid(): ?Users
+    /**
+     * @return Users|null
+     */
+    public function getUserid(): Users
     {
         return $this->userid;
     }
 
-    public function setUserid(?Users $userid): self
+    /**
+     * @param Users $userid
+     * @return Contacts
+     */
+    public function setUserid(Users $userid): self
     {
         $this->userid = $userid;
 

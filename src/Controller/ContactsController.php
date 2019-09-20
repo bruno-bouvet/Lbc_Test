@@ -23,7 +23,7 @@ class ContactsController extends AbstractController
             ->getRepository(Contacts::class)
             ->findAll();
 
-        return $this->render('contacts/index.html.twig', [
+        return $this->render('pages/index.html.twig', [
             'contacts' => $contacts,
         ]);
     }
