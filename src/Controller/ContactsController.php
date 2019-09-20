@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/contacts")
@@ -35,7 +36,15 @@ class ContactsController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $contact = new Contacts();
+        $userId = $this->getUser();
+
+        if ($userId === null) {
+            $this->redirectToRoute('home');
+        } elseif (!is_object($userId) || !$userId instanceof UserInterface) {
+            $userId->getId();
+        }
+
+        $contact = new Contacts($userId);
         $form = $this->createForm(ContactsType::class, $contact);
         $form->handleRequest($request);
 
@@ -44,7 +53,7 @@ class ContactsController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
-            return $this->redirectToRoute('contacts_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('contacts/new.html.twig', [

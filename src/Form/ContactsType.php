@@ -15,7 +15,7 @@ class ContactsType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('email')
-            ->add('userid')
+           // ->add('userid')
         ;
     }
 

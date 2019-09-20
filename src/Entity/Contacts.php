@@ -13,6 +13,12 @@ use App\Entity\Users;
  */
 class Contacts
 {
+
+    public function __construct($userId)
+    {
+        $this->userid = $userId;
+    }
+
     /**
      * @var int
      *
@@ -62,9 +68,9 @@ class Contacts
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNom(): string
+    public function getNom()
     {
         return $this->nom;
     }
@@ -73,17 +79,16 @@ class Contacts
      * @param string $nom
      * @return Contacts
      */
-    public function setNom(string $nom): self
+    public function setNom(string $nom): Contacts
     {
         $this->nom = $nom;
-
         return $this;
     }
 
     /**
      * @return string|null
      */
-    public function getPrenom(): string
+    public function getPrenom()
     {
         return $this->prenom;
     }
@@ -102,7 +107,7 @@ class Contacts
     /**
      * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -121,7 +126,7 @@ class Contacts
     /**
      * @return Users|null
      */
-    public function getUserid(): Users
+    public function getUserid()
     {
         return $this->userid;
     }

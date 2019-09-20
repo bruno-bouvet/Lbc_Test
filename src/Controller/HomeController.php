@@ -17,7 +17,7 @@ class HomeController extends AbstractController
      * @param ContactsRepository $repository
      * @return Response
      */
-    public function index(ContactsRepository $repository) : Response
+    public function index(ContactsRepository $repository): Response
     {
 
         $userId = $this->getUser();
@@ -27,10 +27,7 @@ class HomeController extends AbstractController
         } elseif (!is_object($userId) || !$userId instanceof UserInterface) {
             $userId->getId();
         }
-
-        $userId = 793;
         $properties = $this->getDoctrine()->getManager()->getRepository(Contacts::class)->findBy(['userid' => $userId]);
-        dump($properties);
 
         return $this->render('pages/home.html.twig', [
             'contacts' => $properties
