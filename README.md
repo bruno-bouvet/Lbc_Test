@@ -9,10 +9,13 @@ run docker :
 - docker exec -it -u dev lbctest-php-fpm bash
 - cd /home/wwwroot/application
 - composer install
-- configure the database in the .env file ( DATABASE_URL=mysql://db_user:db_pass@127.0.0.1:3306/db_name )
+
+configure the database in the .env file ( DATABASE_URL=mysql://db_user:db_pass@127.0.0.1:3306/db_name )
 - create it mysql or equivalent
 - create database : bin/console doctrine:database:create 
-- populate database : bin/console doc:fix:load
+
+populate database : 
+- bin/console doc:fix:load
 
 You're done. 
 
