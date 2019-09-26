@@ -2,7 +2,8 @@
 
 # HOW TO INSTALL: 
 - clone : git@github.com:bruno-bouvet/Lbc_Test.git
-- run docker : 
+
+run docker : 
 - docker-compose up -d --force-recreate --build
 - docker exec -it  lbctest-mysql bash
 - docker exec -it -u dev lbctest-php-fpm bash
