@@ -2,8 +2,12 @@
 
 # HOW TO INSTALL: 
 - clone : git@github.com:bruno-bouvet/Lbc_Test.git
-- run docker : [sudo] docker-compose up -d (it should work ..)
-- run composer install
+- run docker : 
+- docker-compose up -d --force-recreate --build
+- docker exec -it  lbctest-mysql bash
+- docker exec -it -u dev lbctest-php-fpm bash
+- cd /home/wwwroot/application
+- composer install
 - configure the database in the .env file ( DATABASE_URL=mysql://db_user:db_pass@127.0.0.1:3306/db_name )
 - create it mysql or equivalent
 - create database : bin/console doctrine:database:create 
