@@ -22,7 +22,8 @@ class ContactsFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < 100; $i++) {
-            $contact = new Contacts();
+            $userId = '';
+            $contact = new Contacts($userId);
             $contact
                 ->setNom($faker->name())
                 ->setPrenom($faker->lastName)

@@ -3,9 +3,14 @@
 {% block title %}New Contacts{% endblock %}
 
 {% block body %}
-    <h1>Create new Contacts</h1>
-
+<div class="card form-row" xmlns="http://www.w3.org/1999/html">
+    <div class="card-body ">
+        <h3 class="card-subtitle mb-2 text-muted">Edition de contacts</h3>
+        <div style="display: none" class="alert alert-primary" id="alert" role="alert">
+            <span id="nameStatus"></span></br>
+        </div>
     {{ include('contacts/_form.html.twig') }}
-
-    <a href="{{ path('contacts_index') }}">back to list</a>
+    </div>
+</div>
+    <button class="btn btn-info" ><a href="{{ path('home') }}" style="color: white">Annuler</a></button>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Addresses;
 use App\Form\AddressesType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,12 +55,14 @@ class AddressesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="addresses_show", methods={"GET"})
+     * @Route("/{id}", name="addresses_show", methods={"GET"}, requirements={"id"="\d+"})
      * @param Addresses $address
+     * @ParamConverter("id", class="App\Entity\Addresses", options={"id": "id"})
      * @return Response
      */
     public function show(Addresses $address): Response
     {
+        $address = $this->getParameter('Addresses');
         return $this->render('addresses/show.html.twig', [
             'address' => $address,
         ]);
@@ -69,6 +72,7 @@ class AddressesController extends AbstractController
      * @Route("/{id}/edit", name="addresses_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Addresses $address
+     * @ParamConverter("id", class="App\Entity\Addresses", options={"id": "id"})
      * @return Response
      */
     public function edit(Request $request, Addresses $address): Response
@@ -77,6 +81,8 @@ class AddressesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $address =
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('addresses_index');

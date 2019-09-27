@@ -31,5 +31,5 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
     encoders:
         App\Entity\Users:
-            algorithm: bcrypt
-            cost: 13
+            algorithm: auto
+

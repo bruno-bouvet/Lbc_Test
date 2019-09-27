@@ -7,7 +7,9 @@
 
     {{ include('contacts/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('contacts_index') }}">back to list</a>
+
+
+    <button class="btn btn-info"> <a style="color: white" href="{{ path('contacts_index') }}">Annuler</a></button>
 
     {{ include('contacts/_delete_form.html.twig') }}
 {% endblock %}
