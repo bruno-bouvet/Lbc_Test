@@ -18,6 +18,15 @@ populate database :
 
 You're done. 
 
+- access app : localhost
+- access DB : (for windows: winpty ) docker exec -it -u sf4_mysql bash
+- access phpMyAdmin : localhost:8084
+
+To clean if you can't factory reset:
+
+- docker-compose down --rmi all
+- docker rm -fv $(docker ps -aq)
+- docker rmi $(docker images -q) --force
 
 # Explications
 
@@ -39,3 +48,5 @@ J'ai aussi fait en partie un migration vers symfony 4 (les parties manquantes é
 - création de L'API REST sous symfony, et ajout de fonctions de nettoyage des noms et prénom et prise en compte des palindromes et ses tests.
 - Script d’optimisation de la BDD.
 - retirer certaines fonctions générées inutiles.
+
+# EDIT : Impossible de faire marcher l'image docker venant du générateur j'ai rajouté la mienne qui fonctionne sous php 7.2 et Mysql 8
