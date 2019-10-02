@@ -5,7 +5,7 @@
 
 run docker : 
 - docker-compose up -d --force-recreate --build
-- docker exec -it -u dev lbctest-php-fpm bash (to access sf)
+- docker exec -it -u dev sf4-php bash (to access sf)
 - cd /home/wwwroot/application
 - composer install
 
